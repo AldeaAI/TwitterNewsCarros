@@ -6,29 +6,39 @@ import re
 
 def news_research_agent(api_key: str, sources: List[str]) -> List[Any]:
     """
-    Searches for recent news about the Colombian real estate market using Perplexity's search API.
+    Searches for recent news about the Mexican automotive market using Perplexity's search API.
     Filters out blacklisted URLs and deduplicates results.
     Returns a list of article objects (as returned by Perplexity).
     """
     client = Perplexity(api_key=api_key)
     queries = [
-        "noticias mercado inmobiliario Colombia",
-        "inversión en vivienda Colombia",
-        # "tendencias sector construcción Colombia",
-        # "créditos hipotecarios Colombia",
-        # "precios de la vivienda en Colombia",
-        # "subsidios de vivienda Colombia",
-        # "mercado de oficinas en Colombia",
-        # "inversión en locales comerciales Colombia",
-        "proyectos inmobiliarios en Medellín",
-        "mercado inmobiliario de Miami para colombianos",
+        "precios autos nuevos México 2026",
+        "autos más vendidos México",
+        "mercado automotriz México",
+        # "ventas autos México INEGI",
+        # "tipo de cambio industria automotriz",
+        # "industria automotriz México inversión",
+        # "AMDA ventas mensuales vehículos",
+        # "aranceles autos México Trump",
+        # "producción automotriz México exportaciones",
+        # "financiamiento automotriz tasas interés México",
+        # "SUV más vendidos México",
+        # "pickup trucks precios México",
+        # "autos eléctricos híbridos México",
+        # "autos chinos México BYD MG Chery",
+        # "Nissan Versa Toyota Hilux precio 2026",
+        # "inflación precios vehículos México",
+        # "depreciación peso impacto autos",
+        # "nearshoring industria automotriz México",
+        # "AMIA producción vehicular mensual",
+        # "libro azul precios autos México"
     ]
     all_results = []
     seen_urls = set()
     for query in queries:
         search = client.search.create(
             query=query,
-            country="CO",
+            country="MX",
             search_language_filter=["es"],
             search_recency_filter="week",
             search_domain_filter=sources,
@@ -56,11 +66,11 @@ def impact_analysis_agent(api_key: str, articles: List[Any]) -> Optional[Any]:
     ]
     article_summaries = json.dumps(article_list, ensure_ascii=False, indent=2)
     prompt = (
-        "Eres un analista experto en el mercado inmobiliario de Colombia. A continuación se presenta un array JSON con "
+        "Eres un analista experto en el mercado automotriz de México. A continuación se presenta un array JSON con "
         "noticias. Cada elemento es un objeto con campos 'id', 'title' y 'url'.\n"
         "Tu tarea es la siguiente:\n"
-        "1. Analiza brevemente la relevancia de cada artículo para el mercado inmobiliario colombiano.\n"
-        "2. Basado en tu análisis, y dando prioridad a noticias de Medellín si las hay, selecciona la noticia que consideres más interesante para una audiencia de personas interesadas en invertir en propiedad raíz y en el sector inmobiliario.\n"
+        "1. Analiza brevemente la relevancia de cada artículo para el mercado automotriz mexicano.\n"
+        "2. Basado en tu análisis, selecciona la noticia que consideres más interesante para una audiencia de personas interesadas en el sector automotriz.\n"
         "3. En una nueva línea, al final de toda tu respuesta, escribe SOLO el 'id' del artículo que elegiste (ej: 3).\n\n"
         f"Artículos (JSON):\n{article_summaries}"
     )
@@ -88,11 +98,10 @@ def twitter_writer_agent(api_key: str, article: Any) -> str:
     """
     client = Perplexity(api_key=api_key)
     system_prompt = (
-        "Eres un analista de mercado experto en el sector inmobiliario. "
+        "Eres un analista de mercado experto en el sector automotriz. "
         "Tu tarea es redactar un post para Twitter resumiendo la noticia proporcionada por el usuario. "
         "El post debe tener un tono sobrio, inteligente y conciso. No utilices emojis ni signos de exclamación. "
         "El post debe resumir el punto clave de la noticia y NO puede exceder los 245 caracteres, incluyendo espacios. Es obligatorio que tenga menos de 245 caracteres."
-        "No incluyas ninguna información adicional. No menciones el número de caracteres en el post. No incluyas referencias ni numeros de citaciones."
     )
 
     user_prompt = (
