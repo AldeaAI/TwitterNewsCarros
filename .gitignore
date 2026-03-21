@@ -1,0 +1,11 @@
+# Local configuration files
+config.toml
+
+# Python virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+
+# vscode files
+.vscode/
