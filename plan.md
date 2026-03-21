@@ -1,6 +1,6 @@
 # Plan para la Herramienta de Generación de Posts de Twitter
 
-Este documento describe el plan para crear una herramienta que genera posts de Twitter sobre el mercado inmobiliario en Colombia utilizando agentes de Perplexity.
+Este documento describe el plan para crear una herramienta que genera posts de Twitter sobre el mercado automotriz en México utilizando agentes de Perplexity.
 
 ## Fase 1: Descubrimiento de Fuentes
 
@@ -23,9 +23,9 @@ graph TD
 ```
 
 ### 1. Agente Investigador de Noticias
-*   **Misión:** Encontrar los artículos de noticias más relevantes sobre el mercado inmobiliario en Colombia de los últimos 5 días.
+*   **Misión:** Encontrar los artículos de noticias más relevantes sobre el mercado automotriz en México de los últimos 5 días.
 *   **Herramienta:** API de Búsqueda de Perplexity (`client.search.create`).
-*   **Entrada:** Una consulta de búsqueda (ej: "noticias mercado inmobiliario Colombia") y la lista de dominios de noticias confiables.
+*   **Entrada:** Una consulta de búsqueda (ej: "precios autos nuevos México 2026") y la lista de dominios de noticias confiables.
 *   **Salida:** Una lista de URLs y títulos de los artículos encontrados.
 
 ### 2. Agente Analista de Impacto

@@ -2,7 +2,7 @@
 TwitterNews Main Orchestrator
 
 This script orchestrates a 3-agent pipeline to:
-  1. Search news for Colombian real estate articles (news_research_agent)
+  1. Search news for Mexican automotive articles (news_research_agent)
   2. Analyze impact and select the most relevant article (impact_analysis_agent)
   3. Generate a Twitter post for the selected article (twitter_writer_agent)
   4. Optionally post the generated tweet to Twitter (post_tweet)
@@ -177,18 +177,6 @@ def main():
     else:
         print(f"Tweet length: {len(tweet)} characters (within 245 character limit)")
     # -------------------------------
-    # --- Add hashtag to tweet ---
-    # -------------------------------
-
-    # Add #AldeaAI hashtag to the tweet
-    if "#AldeaAI" not in tweet:
-        # Check if adding hashtag would exceed character limit
-        tweet_with_hashtag = f"{tweet} #AldeaAI"
-        tweet = tweet_with_hashtag
-        print(f"Added #AldeaAI hashtag. New tweet length: {len(tweet)} characters\n")
-
-
-    # -------------------------------
     # --- Add website source to tweet ---
     # -------------------------------
     
@@ -196,14 +184,14 @@ def main():
     if most_relevant.url:
         # Extract domain from URL for cleaner display
         domain = most_relevant.url
-        
+
         # Create attribution text
         source_text = f" {domain}"
-        
+
         # Check if adding source would exceed character limit
         tweet_with_source = f"{tweet}{source_text}"
         tweet = tweet_with_source
-        print(f"Added source attribution. New tweet length: {len(tweet_with_hashtag) + 23} characters")
+        print(f"Added source attribution. New tweet length: {len(tweet_with_source)} characters")
 
 
     print("\n--- Generated Full Tweet Text ---")

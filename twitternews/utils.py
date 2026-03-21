@@ -1,47 +1,29 @@
 from urllib.parse import urlparse
 
 RESTRICTED_DOMAINS = [
-    "eltiempo.com",
-    "noticiascaracol.com",
-    "elespectador.com",
-    "elcolombiano.com",
-    "larepublica.co",
-    "semana.com",
-    "portafolio.co",
-    "bluradio.com",
-    "vanguardia.com",
-    "elheraldo.co",
-    "publimetro.co",
-    "rcnradio.com",
-    "caracol.com.co",
-    "elpais.com.co",
-    "lasillavacia.com",
-    "dane.gov.co/index.php/actualidad-dane"
+    "eluniversal.com.mx",
+    "milenio.com",
+    "infobae.com/mexico",
+    "expansion.mx",
+    "elfinanciero.com.mx",
+    "reforma.com",
+    "heraldodemexico.com.mx",
+    "motorpasion.com.mx",
+    "autocosmos.com.mx",
+    "autosactual.mx"
 ]
 
 # Add specific URLs to this set to blacklist them exactly
 BLACKLISTED_URLS = {
-    "https://www.bluradio.com/noticias",
-    "https://www.larepublica.co/videos/datos-cocteleros",
-    "https://www.lafm.com.co/noticias/inversiones",
-    "https://www.lafm.com.co/noticias/colombia,"
-    "https://www.dane.gov.co/index.php/actualidad-dane",
-    "https://www.larepublica.co/foros"
-    
-    # Add more URLs here as needed
+    # "https://www.motorpasion.com.mx",
+    # "https://www.autocosmos.com.mx",
+    # "https://www.autosactual.mx"
 }
 
 BLACKLISTED_URL_PREFIXES = [
-    "https://www.bluradio.com/noticias",
-    "https://www.bluradio.com/casa-blu",
-    "https://www.larepublica.co/indicadores-economicos",
-    "https://www.elespectador.com/archivo",
-    "https://caracol.com.co/tag",
-    "https://www.elcolombiano.com/multimedia",
-    "https://www.elheraldo.co/tags",
-    "https://m.elcolombiano.com",
-    "https://fincaraiz.elpais.com.co"
-    # Add more URL prefixes here as needed
+    # "https://www.motorpasion.com.mx",
+    # "https://www.autocosmos.com.mx",
+    # "https://www.autosactual.mx"
 ]
 
 def is_blacklisted(url: str) -> bool:
@@ -64,9 +46,6 @@ def is_blacklisted(url: str) -> bool:
         domain = parsed.netloc.lower()
         clean_path = parsed.path.strip("/")
 
-        # Blacklist any elcolombiano.com URL containing '/meta/' in the path
-        if "elcolombiano.com" in domain and "/meta/" in parsed.path:
-            return True
 
         if not clean_path:
             return True
