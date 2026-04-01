@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://www.milenio.com/negocios/autos-chinos-produccion-y-venta-crecen-en-mexico",
-        "date": "2026-03-25T08:54:12.622424"
-    },
-    {
         "url": "https://www.infobae.com/economia/2026/03/24/vencio-el-acuerdo-automotor-con-mexico-y-hay-dudas-sobre-su-continuidad-que-pasara-con-los-vehiculos-que-llegan-de-ese-pais/",
         "date": "2026-03-25T15:01:29.817582"
     },
@@ -78,5 +74,9 @@
     {
         "url": "https://noticias.autocosmos.com.mx/2026/03/30/estas-son-las-marcas-que-mas-autos-vendieron-mediante-autofinanciamiento-en-febrero-2026",
         "date": "2026-03-31T20:44:32.725635"
+    },
+    {
+        "url": "https://www.infobae.com/economia/2026/03/31/cierra-marzo-con-un-leve-aumento-en-el-patentamiento-de-autos-0-km-cuales-son-los-modelos-mas-vendidos/",
+        "date": "2026-04-01T09:07:18.768401"
     }
 ]
