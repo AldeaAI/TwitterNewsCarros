@@ -2,3 +2,6 @@ perplexityai
 requests
 toml
 tweepy
+Pillow
+instagrapi
+beautifulsoup4
