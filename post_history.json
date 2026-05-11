@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://www.milenio.com/temas/industria-automotriz",
-        "date": "2026-05-04T16:03:25.502856"
-    },
-    {
         "url": "https://www.eluniversal.com.mx/autopistas/lexus-is-350-f-sport-2026-precios-y-versiones-en-mexico/",
         "date": "2026-05-05T15:54:55.537967"
     },
@@ -46,5 +42,9 @@
     {
         "url": "https://www.eluniversal.com.mx/autopistas/nissan-versa-deja-de-ser-el-auto-mas-vendido-en-mexico-cual-lo-supero/",
         "date": "2026-05-10T20:50:39.861102"
+    },
+    {
+        "url": "https://www.milenio.com/negocios/mexico-rebasa-500-mil-ventas-autos-ligeros-enero-abril-2026",
+        "date": "2026-05-11T16:34:08.992807"
     }
 ]
