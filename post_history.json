@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/05/06/las-10-marcas-de-autos-mas-vendidas-en-abril-2026",
-        "date": "2026-05-06T21:12:24.902958"
-    },
-    {
         "url": "https://www.elfinanciero.com.mx/autos/2026/05/05/bmw-i3-2026-mexico-463-hp-900-km-y-precio-estimado/",
         "date": "2026-05-07T16:07:13.699653"
     },
@@ -50,5 +46,9 @@
     {
         "url": "https://www.infobae.com/mexico/2026/05/12/claudia-sheinbaum-adelanta-que-vienen-buenas-noticias-sobre-la-comercializacion-de-autos-en-mexico-ante-aranceles-de-trump/",
         "date": "2026-05-13T16:20:39.109585"
+    },
+    {
+        "url": "https://noticias.autocosmos.com.mx/2026/05/12/los-10-suvs-mas-vendidos-en-abril-2026",
+        "date": "2026-05-13T21:26:36.851370"
     }
 ]
