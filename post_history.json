@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/05/05/761-autos-nuevos-son-comprados-mediante-credito-en-el-primer-trimestre-de-2026",
-        "date": "2026-05-08T21:02:01.263196"
-    },
-    {
         "url": "https://expansion.mx/empresas/2026/05/06/nissan-versa-pierde-auto-mas-vendido-en-mexico",
         "date": "2026-05-09T20:45:04.599602"
     },
@@ -46,5 +42,9 @@
     {
         "url": "https://expansion.mx/empresas/2026/05/11/produccion-de-autos-mexico-crece-desde-2019",
         "date": "2026-05-14T21:11:26.719635"
+    },
+    {
+        "url": "https://noticias.autocosmos.com.mx/2026/05/13/las-10-pickups-mas-vendidas-en-abril-2026",
+        "date": "2026-05-15T21:02:18.458163"
     }
 ]
