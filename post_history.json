@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/05/12/los-10-suvs-mas-vendidos-en-abril-2026",
-        "date": "2026-05-13T21:26:36.851370"
-    },
-    {
         "url": "https://www.infobae.com/america/agencias/2026/05/11/la-exportacion-de-autos-de-mexico-crece-un-1143-anual-en-abril/",
         "date": "2026-05-14T16:10:58.777026"
     },
@@ -50,5 +46,9 @@
     {
         "url": "https://www.elfinanciero.com.mx/empresas/2026/05/19/cuantos-chevrolet-aveo-se-vendieron-en-mexico-en-2025-y-que-modelo-le-gano/",
         "date": "2026-05-20T16:55:19.463412"
+    },
+    {
+        "url": "https://expansion.mx/empresas/2026/05/19/aveo-el-competidor-del-versa-que-general-motors-volvera-a-producir-en-mexico",
+        "date": "2026-05-20T21:55:11.951337"
     }
 ]
