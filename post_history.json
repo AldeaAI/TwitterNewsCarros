@@ -1,13 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/05/11/los-10-autos-mas-vendidos-en-abril-2026",
-        "date": "2026-05-12T21:21:14.624153"
-    },
-    {
-        "url": "https://www.infobae.com/mexico/2026/05/12/claudia-sheinbaum-adelanta-que-vienen-buenas-noticias-sobre-la-comercializacion-de-autos-en-mexico-ante-aranceles-de-trump/",
-        "date": "2026-05-13T16:20:39.109585"
-    },
-    {
         "url": "https://noticias.autocosmos.com.mx/2026/05/12/los-10-suvs-mas-vendidos-en-abril-2026",
         "date": "2026-05-13T21:26:36.851370"
     },
@@ -54,5 +46,9 @@
     {
         "url": "https://noticias.autocosmos.com.mx/2026/05/15/los-10-vehiculos-mas-producidos-en-mexico-durante-abril-2026",
         "date": "2026-05-19T21:20:13.074565"
+    },
+    {
+        "url": "https://www.elfinanciero.com.mx/empresas/2026/05/19/cuantos-chevrolet-aveo-se-vendieron-en-mexico-en-2025-y-que-modelo-le-gano/",
+        "date": "2026-05-20T16:55:19.463412"
     }
 ]
