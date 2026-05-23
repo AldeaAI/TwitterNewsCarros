@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/05/12/243854-autos-nuevos-fueron-adquiridos-mediante-financiamiento-a-marzo-2026",
-        "date": "2026-05-16T14:57:52.014956"
-    },
-    {
         "url": "https://www.milenio.com/negocios/produccion-automotriz-aumenta-en-abril-inegi",
         "date": "2026-05-16T20:50:11.570124"
     },
@@ -54,5 +50,9 @@
     {
         "url": "https://noticias.autocosmos.com.mx/2026/05/20/mexico-rompe-records-de-exportacion-de-autos-pero-enfrenta-crisis-de-financiamiento",
         "date": "2026-05-22T21:11:21.754523"
+    },
+    {
+        "url": "https://www.infobae.com/america/agencias/2026/05/21/mexico-debe-pasar-de-producir-automoviles-a-controlar-cadenas-de-valor-advierte-experto/",
+        "date": "2026-05-23T15:01:32.149842"
     }
 ]
