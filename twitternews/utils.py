@@ -1,16 +1,16 @@
 from urllib.parse import urlparse
 
 RESTRICTED_DOMAINS = [
-    "eluniversal.com.mx",
-    "milenio.com",
-    "infobae.com/mexico",
-    "expansion.mx",
-    "elfinanciero.com.mx",
-    "reforma.com",
-    "heraldodemexico.com.mx",
-    "motorpasion.com.mx",
-    "autocosmos.com.mx",
-    "autosactual.mx"
+    "eluniversal.com.mx", # @El_Universal_Mx
+    "milenio.com", # @Milenio
+    "infobae.com/mexico", #@infobaemexico
+    "expansion.mx", # @ExpansionMx
+    "elfinanciero.com.mx", # @ElFinanciero_Mx
+    "reforma.com", # @Reforma
+    "heraldodemexico.com.mx", # @HeraldodeMexico
+    "motorpasion.com.mx", # @MotorpasionMex
+    "autocosmos.com.mx", # @Autocosmos
+    "autosactual.mx" # @autosactual
 ]
 
 # Add specific URLs to this set to blacklist them exactly
