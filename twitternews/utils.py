@@ -13,6 +13,19 @@ RESTRICTED_DOMAINS = [
     "autosactual.mx" # @autosactual
 ]
 
+SOURCE_TWITTER_HANDLES = {
+    "eluniversal.com.mx": "@El_Universal_Mx",
+    "milenio.com": "@Milenio",
+    "infobae.com/mexico": "@infobaemexico",
+    "expansion.mx": "@ExpansionMx",
+    "elfinanciero.com.mx": "@ElFinanciero_Mx",
+    "reforma.com": "@Reforma",
+    "heraldodemexico.com.mx": "@HeraldodeMexico",
+    "motorpasion.com.mx": "@MotorpasionMex",
+    "autocosmos.com.mx": "@Autocosmos",
+    "autosactual.mx": "@autosactual",
+}
+
 # Add specific URLs to this set to blacklist them exactly
 BLACKLISTED_URLS = {
     # "https://www.motorpasion.com.mx",
@@ -25,6 +38,42 @@ BLACKLISTED_URL_PREFIXES = [
     # "https://www.autocosmos.com.mx",
     # "https://www.autosactual.mx"
 ]
+
+
+def get_twitter_handle_for_url(url: str) -> str:
+    """
+    Returns the mapped Twitter handle for a source URL, or empty string if unknown.
+    """
+    if not url:
+        return ""
+
+    try:
+        parsed = urlparse(url)
+        domain = parsed.netloc.lower()
+        if domain.startswith("www."):
+            domain = domain[4:]
+        path = parsed.path.strip("/").lower()
+    except Exception:
+        return ""
+
+    # Exact domain + first path segment match (e.g., infobae.com/mexico)
+    if path:
+        first_segment = path.split("/")[0]
+        domain_with_segment = f"{domain}/{first_segment}"
+        if domain_with_segment in SOURCE_TWITTER_HANDLES:
+            return SOURCE_TWITTER_HANDLES[domain_with_segment]
+
+    # Exact domain match
+    if domain in SOURCE_TWITTER_HANDLES:
+        return SOURCE_TWITTER_HANDLES[domain]
+
+    # Subdomain fallback match
+    for source, handle in SOURCE_TWITTER_HANDLES.items():
+        source_domain = source.split("/")[0]
+        if domain == source_domain or domain.endswith(f".{source_domain}"):
+            return handle
+
+    return ""
 
 def is_blacklisted(url: str) -> bool:
     """

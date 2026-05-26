@@ -25,6 +25,7 @@ Usage:
 # - twitternews.agents: Perplexity-powered agents (news, analysis, writer)
 # - twitternews.twitter_utils: posting implementation that reads TWITTER_* from environment
 import sys
+from urllib.parse import urlparse
 from twitternews.config import get_api_key, get_twitter_credentials, load_sources
 from twitternews.history import load_history, save_history
 from twitternews.agents import news_research_agent, impact_analysis_agent, twitter_writer_agent, tweet_optimizer_agent
@@ -156,43 +157,73 @@ def main():
     print(tweet)
     print("-----------------------\n")
 
-    # Check if tweet exceeds 245 characters (including spaces)
-    if len(tweet) > 245:
-        print(f"Warning: Tweet is {len(tweet)} characters, exceeds 245 character limit.")
-        print("Attempting to optimize tweet to fit within limit...")
+    source_url = getattr(most_relevant, "url", "")
+    source_domain = urlparse(source_url).netloc.lower()
+    if source_domain.startswith("www."):
+        source_domain = source_domain[4:]
 
-        tweet = tweet_optimizer_agent(api_key, tweet)
-        
-        print("optimised tweet length:", len(tweet))
+    # Keep only the core brand token from the domain.
+    source_parts = [p for p in source_domain.split(".") if p and p != "www"]
+    removable_suffixes = {"com", "mx", "org", "net", "co", "info"}
+    while source_parts and source_parts[-1] in removable_suffixes:
+        source_parts.pop()
 
-        print("\n--- Optimized Tweet Text ---")
-        print(tweet)
-        print("-----------------------\n")
+    source_label = source_parts[-1] if source_parts else ""
+    source_label = re.sub(r"[^a-z0-9-]", "", source_label)
 
-        if len(tweet) > 245:
-            print(f"Error: Optimized tweet is still {len(tweet)} characters, exceeds 245 character limit.")
-            print("Cannot proceed with posting. Please review the optimization logic.")
-            return
-        # print("Consider regenerating or manually shortening the tweet.")
-        # return
+    if source_label:
+        source_label = source_label[0].upper() + source_label[1:]
+
+    source_prefix = f"{source_label}: " if source_label else ""
+    max_tweet_length = 245
+
+    if source_prefix:
+        max_body_length = max_tweet_length - len(source_prefix)
+        print(f"Source prefix selected: {source_prefix.strip()}")
+
+        if len(tweet) > max_body_length:
+            print(f"Warning: Tweet is {len(tweet)} characters, exceeds {max_body_length} chars available before adding source prefix.")
+            print("Attempting to optimize tweet body to fit within limit...")
+
+            tweet = tweet_optimizer_agent(api_key, tweet)
+
+            # Re-sanitize optimizer output in case it returns citations/count notes.
+            tweet = re.sub(r'\[\d+\]', '', tweet).strip()
+            tweet = re.sub(r'\(\d+\s+caracteres?\)', '', tweet).strip()
+            tweet = re.sub(r'\[\d+\s+caracteres?\]', '', tweet).strip()
+
+            print("optimised tweet length:", len(tweet))
+            print("\n--- Optimized Tweet Text ---")
+            print(tweet)
+            print("-----------------------\n")
+
+            if len(tweet) > max_body_length:
+                print(f"Warning: Optimized tweet is still too long for source prefix. Truncating to {max_body_length} characters.")
+                tweet = tweet[:max_body_length].rstrip()
+
+        tweet = f"{source_prefix}{tweet}".strip()
+        print(f"Source prefix added at start: {source_prefix.strip()}")
+        print(f"Tweet length with source prefix: {len(tweet)} characters")
     else:
-        print(f"Tweet length: {len(tweet)} characters (within 245 character limit)")
-    # -------------------------------
-    # --- Add website source to tweet ---
-    # -------------------------------
-    
-    # # Add the source website URL to provide attribution
-    # if most_relevant.url:
-    #     # Extract domain from URL for cleaner display
-    #     domain = most_relevant.url
+        # Fallback behavior when source URL does not include a parseable domain.
+        if len(tweet) > max_tweet_length:
+            print(f"Warning: Tweet is {len(tweet)} characters, exceeds {max_tweet_length} character limit.")
+            print("Attempting to optimize tweet to fit within limit...")
 
-    #     # Create attribution text
-    #     source_text = f" {domain}"
+            tweet = tweet_optimizer_agent(api_key, tweet)
 
-    #     # Check if adding source would exceed character limit
-    #     tweet_with_source = f"{tweet}{source_text}"
-    #     tweet = tweet_with_source
-    #     print(f"Added source attribution. New tweet length: {len(tweet_with_source)} characters")
+            print("optimised tweet length:", len(tweet))
+
+            print("\n--- Optimized Tweet Text ---")
+            print(tweet)
+            print("-----------------------\n")
+
+            if len(tweet) > max_tweet_length:
+                print(f"Error: Optimized tweet is still {len(tweet)} characters, exceeds {max_tweet_length} character limit.")
+                print("Cannot proceed with posting. Please review the optimization logic.")
+                return
+        else:
+            print(f"Tweet length: {len(tweet)} characters (within {max_tweet_length} character limit)")
 
 
     print("\n--- Generated Full Tweet Text ---")
