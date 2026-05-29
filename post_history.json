@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/05/20/mexico-rompe-records-de-exportacion-de-autos-pero-enfrenta-crisis-de-financiamiento",
-        "date": "2026-05-22T21:11:21.754523"
-    },
-    {
         "url": "https://www.infobae.com/america/agencias/2026/05/21/mexico-debe-pasar-de-producir-automoviles-a-controlar-cadenas-de-valor-advierte-experto/",
         "date": "2026-05-23T15:01:32.149842"
     },
@@ -74,5 +70,9 @@
     {
         "url": "https://www.milenio.com/negocios/revision-t-mec-pone-riesgo-competitividad-automotriz-toyota",
         "date": "2026-05-29T17:34:11.431805"
+    },
+    {
+        "url": "https://www.eluniversal.com.mx/cartera/credito-automotriz-llega-a-755-de-las-compras-en-abril-sonora-tamaulipas-y-aguascalientes-ocuparon-los-primeros-lugares/",
+        "date": "2026-05-29T21:52:28.719729"
     }
 ]
