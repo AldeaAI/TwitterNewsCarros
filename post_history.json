@@ -1,13 +1,5 @@
 [
     {
-        "url": "https://www.milenio.com/temas/venta-de-autos",
-        "date": "2026-05-26T22:32:50.120340"
-    },
-    {
-        "url": "https://www.elfinanciero.com.mx/opinion/jeanette-leyva/2026/05/27/mexico-el-detroit-del-siglo-xxi-i/",
-        "date": "2026-05-27T17:20:10.617123"
-    },
-    {
         "url": "https://www.motorpasion.com.mx/autor/pablo-monroy",
         "date": "2026-05-27T21:56:03.150851"
     },
@@ -58,5 +50,9 @@
     {
         "url": "https://noticias.autocosmos.com.mx/2026/05/29/755-autos-nuevos-fueron-comprados-con-credito-a-abril-2026",
         "date": "2026-06-02T22:23:14.292804"
+    },
+    {
+        "url": "https://www.eluniversal.com.mx/cartera/aranceles-pegan-mas-a-compactos-y-autos-de-lujo/",
+        "date": "2026-06-03T18:23:41.614966"
     }
 ]
