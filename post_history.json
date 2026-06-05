@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://www.milenio.com/negocios/revision-t-mec-pone-riesgo-competitividad-automotriz-toyota",
-        "date": "2026-05-29T17:34:11.431805"
-    },
-    {
         "url": "https://www.eluniversal.com.mx/cartera/credito-automotriz-llega-a-755-de-las-compras-en-abril-sonora-tamaulipas-y-aguascalientes-ocuparon-los-primeros-lugares/",
         "date": "2026-05-29T21:52:28.719729"
     },
@@ -58,5 +54,9 @@
     {
         "url": "https://www.milenio.com/negocios/industria-automotriz-ventas-crecen-mayo-inegi",
         "date": "2026-06-05T16:29:57.776223"
+    },
+    {
+        "url": "https://www.eluniversal.com.mx/cartera/venta-de-autos-nuevos-crece-5-en-mayo-suman-627-mil-609-unidades-vendidas-en-primeros-5-meses-del-ano/",
+        "date": "2026-06-05T21:26:41.053896"
     }
 ]
