@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://www.elfinanciero.com.mx/empresas/2026/06/04/venta-de-autos-crece-49-por-ciento-en-mayo-mercado-hila-tres-meses-con-aumentos/",
-        "date": "2026-06-04T21:41:57.479376"
-    },
-    {
         "url": "https://www.milenio.com/negocios/industria-automotriz-ventas-crecen-mayo-inegi",
         "date": "2026-06-05T16:29:57.776223"
     },
@@ -50,5 +46,9 @@
     {
         "url": "https://www.milenio.com/negocios/vehiculos-hibridos-electricos-clave-automotriz-mexico",
         "date": "2026-06-11T17:36:59.308282"
+    },
+    {
+        "url": "https://www.milenio.com/negocios/alertas-recesion-mexico-sector-automotriz-t-mec",
+        "date": "2026-06-11T22:03:19.390951"
     }
 ]
