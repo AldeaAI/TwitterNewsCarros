@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://www.milenio.com/negocios/industria-automotriz-ventas-crecen-mayo-inegi",
-        "date": "2026-06-05T16:29:57.776223"
-    },
-    {
         "url": "https://www.eluniversal.com.mx/cartera/venta-de-autos-nuevos-crece-5-en-mayo-suman-627-mil-609-unidades-vendidas-en-primeros-5-meses-del-ano/",
         "date": "2026-06-05T21:26:41.053896"
     },
@@ -50,5 +46,9 @@
     {
         "url": "https://www.milenio.com/negocios/alertas-recesion-mexico-sector-automotriz-t-mec",
         "date": "2026-06-11T22:03:19.390951"
+    },
+    {
+        "url": "https://www.milenio.com/negocios/niegan-credito-automotriz-en-mexico-pese-a-mayor-financiamiento",
+        "date": "2026-06-12T16:45:11.625368"
     }
 ]
