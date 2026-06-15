@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/06/05/315636-autos-nuevos-fueron-adquiridos-mediante-credito-a-abril-2026",
-        "date": "2026-06-08T21:50:36.542559"
-    },
-    {
         "url": "https://www.elfinanciero.com.mx/empresas/2026/06/09/exportacion-de-autos-crece-4-por-ciento-pese-a-caida-de-01-del-armado/",
         "date": "2026-06-09T16:31:55.470850"
     },
@@ -50,5 +46,9 @@
     {
         "url": "https://noticias.autocosmos.com.mx/2026/06/09/los-10-suvs-mas-vendidos-en-mayo-2026",
         "date": "2026-06-15T18:26:58.507505"
+    },
+    {
+        "url": "https://www.eluniversal.com.mx/autopistas/olinia-y-tt01-esto-cuestan-los-autos-electricos-mexicanos/",
+        "date": "2026-06-15T22:20:09.016213"
     }
 ]
