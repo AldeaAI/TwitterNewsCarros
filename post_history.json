@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://www.elfinanciero.com.mx/empresas/2026/06/09/exportacion-de-autos-crece-4-por-ciento-pese-a-caida-de-01-del-armado/",
-        "date": "2026-06-09T16:31:55.470850"
-    },
-    {
         "url": "https://www.eluniversal.com.mx/cartera/debil-crecimiento-sin-impacto-en-las-ventas-de-autos-amda/",
         "date": "2026-06-09T21:47:55.824453"
     },
@@ -50,5 +46,9 @@
     {
         "url": "https://www.eluniversal.com.mx/autopistas/olinia-y-tt01-esto-cuestan-los-autos-electricos-mexicanos/",
         "date": "2026-06-15T22:20:09.016213"
+    },
+    {
+        "url": "https://www.elfinanciero.com.mx/autos/2026/06/15/olinia-uno-precio-autonomia-y-ficha-del-electrico-mexicano/",
+        "date": "2026-06-16T18:27:30.605485"
     }
 ]
