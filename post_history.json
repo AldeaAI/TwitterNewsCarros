@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://www.milenio.com/negocios/niegan-credito-automotriz-en-mexico-pese-a-mayor-financiamiento",
-        "date": "2026-06-12T16:45:11.625368"
-    },
-    {
         "url": "https://www.reforma.com/baja-3-7-anual-produccion-de-autos-en-mayo/ar3218512",
         "date": "2026-06-12T21:45:43.396828"
     },
@@ -58,5 +54,9 @@
     {
         "url": "https://www.elfinanciero.com.mx/empresas/2026/06/19/aranceles-de-trump-del-25-por-ciento-frenan-avance-en-la-venta-de-camiones-chinos-en-mexico/",
         "date": "2026-06-19T16:32:03.632268"
+    },
+    {
+        "url": "https://expansion.mx/empresas/2026/06/18/corea-del-sur-kia-hyundai-venta-de-autos-mexico",
+        "date": "2026-06-19T21:11:03.981918"
     }
 ]
