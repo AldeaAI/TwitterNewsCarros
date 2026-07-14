@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/06/30/742-autos-nuevos-fueron-adquiridos-con-credito-a-mayo-2026",
-        "date": "2026-07-06T21:38:13.285138"
-    },
-    {
         "url": "https://noticias.autocosmos.com.mx/2026/07/01/nissan-x-trail-e-power-2027-llega-a-mexico-con-nuevo-sistema-e-4orce-conoce-precios-y-versiones",
         "date": "2026-07-07T16:31:37.141476"
     },
@@ -58,5 +54,9 @@
     {
         "url": "https://www.milenio.com/negocios/armadoras-reestructuran-produccion-mexico-aranceles-t-mec",
         "date": "2026-07-13T20:57:13.360523"
+    },
+    {
+        "url": "https://www.elfinanciero.com.mx/empresas/2026/07/07/exportacion-de-autos-hechos-en-mexico-cae-92-en-junio-eu-concentra-casi-80-de-compras/",
+        "date": "2026-07-14T15:23:49.547670"
     }
 ]
