@@ -122,18 +122,22 @@ def twitter_writer_agent(api_key: str, article: Any) -> str:
     )
     return completion.choices[0].message.content
 
-def tweet_optimizer_agent(api_key: str, tweet_text: str) -> str:
+def tweet_optimizer_agent(api_key: str, tweet_text: str, max_length: int = 245) -> str:
     """
-    Takes a tweet that exceeds 245 characters and optimizes it to be under 245 characters.
+    Takes a tweet that exceeds max_length characters and optimizes it to fit.
     Returns the optimized tweet text.
     """
-    if len(tweet_text) <= 245:
+    if len(tweet_text) <= max_length:
         return tweet_text
-    
+
     client = Perplexity(api_key=api_key)
 
+    # Ask for a bit under the real limit: the model is unreliable at exact
+    # character counts, so the margin absorbs small overshoots.
+    target_length = max(max_length - 10, 1)
+
     user_prompt = (
-        f"Optimiza el siguiente tweet para que tenga menos de 245 caracteres. Solo escribe el nuevo tweet. Sin citaciones ni informacion adicional:\n\n"
+        f"Optimiza el siguiente tweet para que tenga menos de {target_length} caracteres. Solo escribe el nuevo tweet. Sin citaciones ni informacion adicional:\n\n"
         f"Tweet original ({len(tweet_text)} caracteres):\n{tweet_text}"
     )
 
