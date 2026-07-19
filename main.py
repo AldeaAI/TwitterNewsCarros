@@ -185,21 +185,27 @@ def main():
             print(f"Warning: Tweet is {len(tweet)} characters, exceeds {max_body_length} chars available before adding source prefix.")
             print("Attempting to optimize tweet body to fit within limit...")
 
-            tweet = tweet_optimizer_agent(api_key, tweet)
+            for attempt in range(1, 4):
+                tweet = tweet_optimizer_agent(api_key, tweet, max_length=max_body_length)
 
-            # Re-sanitize optimizer output in case it returns citations/count notes.
-            tweet = re.sub(r'\[\d+\]', '', tweet).strip()
-            tweet = re.sub(r'\(\d+\s+caracteres?\)', '', tweet).strip()
-            tweet = re.sub(r'\[\d+\s+caracteres?\]', '', tweet).strip()
+                # Re-sanitize optimizer output in case it returns citations/count notes.
+                tweet = re.sub(r'\[\d+\]', '', tweet).strip()
+                tweet = re.sub(r'\(\d+\s+caracteres?\)', '', tweet).strip()
+                tweet = re.sub(r'\[\d+\s+caracteres?\]', '', tweet).strip()
 
-            print("optimised tweet length:", len(tweet))
-            print("\n--- Optimized Tweet Text ---")
-            print(tweet)
-            print("-----------------------\n")
+                print(f"Optimization attempt {attempt}: {len(tweet)} characters")
+                print("\n--- Optimized Tweet Text ---")
+                print(tweet)
+                print("-----------------------\n")
+
+                if len(tweet) <= max_body_length:
+                    break
 
             if len(tweet) > max_body_length:
-                print(f"Warning: Optimized tweet is still too long for source prefix. Truncating to {max_body_length} characters.")
-                tweet = tweet[:max_body_length].rstrip()
+                # Never truncate: a cut-off tweet must not be published.
+                print(f"Error: Optimized tweet is still {len(tweet)} characters, exceeds the {max_body_length} character limit.")
+                print("Aborting without posting to avoid publishing an incomplete tweet.")
+                return
 
         tweet = f"{source_prefix}{tweet}".strip()
         print(f"Source prefix added at start: {source_prefix.strip()}")
@@ -210,17 +216,25 @@ def main():
             print(f"Warning: Tweet is {len(tweet)} characters, exceeds {max_tweet_length} character limit.")
             print("Attempting to optimize tweet to fit within limit...")
 
-            tweet = tweet_optimizer_agent(api_key, tweet)
+            for attempt in range(1, 4):
+                tweet = tweet_optimizer_agent(api_key, tweet, max_length=max_tweet_length)
 
-            print("optimised tweet length:", len(tweet))
+                # Re-sanitize optimizer output in case it returns citations/count notes.
+                tweet = re.sub(r'\[\d+\]', '', tweet).strip()
+                tweet = re.sub(r'\(\d+\s+caracteres?\)', '', tweet).strip()
+                tweet = re.sub(r'\[\d+\s+caracteres?\]', '', tweet).strip()
 
-            print("\n--- Optimized Tweet Text ---")
-            print(tweet)
-            print("-----------------------\n")
+                print(f"Optimization attempt {attempt}: {len(tweet)} characters")
+                print("\n--- Optimized Tweet Text ---")
+                print(tweet)
+                print("-----------------------\n")
+
+                if len(tweet) <= max_tweet_length:
+                    break
 
             if len(tweet) > max_tweet_length:
                 print(f"Error: Optimized tweet is still {len(tweet)} characters, exceeds {max_tweet_length} character limit.")
-                print("Cannot proceed with posting. Please review the optimization logic.")
+                print("Aborting without posting to avoid publishing an incomplete tweet.")
                 return
         else:
             print(f"Tweet length: {len(tweet)} characters (within {max_tweet_length} character limit)")
