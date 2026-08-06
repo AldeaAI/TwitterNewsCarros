@@ -1,14 +1,66 @@
 from typing import List, Optional, Any
+from dataclasses import dataclass
 from perplexity import Perplexity
 from .utils import is_blacklisted
 import json
 import re
 
-def news_research_agent(api_key: str, sources: List[str]) -> List[Any]:
+
+@dataclass
+class Article:
+    """
+    A search result, normalized to a stable shape.
+
+    The Perplexity SDK hands back the items of `search.results` as model objects
+    in some versions and as plain dicts in others (0.43.x), so results are
+    converted here and the rest of the pipeline only ever sees this type.
+    """
+    title: str
+    url: str
+    snippet: str = ""
+    date: str = ""
+
+
+def _field(obj: Any, name: str) -> Any:
+    """Reads a field from a dict or an object, whichever the SDK returned."""
+    if isinstance(obj, dict):
+        return obj.get(name)
+    return getattr(obj, name, None)
+
+
+def _to_article(result: Any) -> Article:
+    """Builds an Article from either a dict or an attribute-style search result."""
+    def text(name: str) -> str:
+        value = _field(result, name)
+        return value if isinstance(value, str) else ""
+
+    return Article(
+        title=text("title"),
+        url=text("url"),
+        snippet=text("snippet"),
+        date=text("date"),
+    )
+
+
+def _completion_text(completion: Any) -> str:
+    """
+    Extracts the assistant message text from a chat completion.
+
+    Nested response objects arrive as dicts on some SDK versions, so every hop
+    goes through _field rather than plain attribute access.
+    """
+    choices = _field(completion, "choices") or []
+    if not choices:
+        return ""
+    content = _field(_field(choices[0], "message"), "content")
+    return content if isinstance(content, str) else ""
+
+
+def news_research_agent(api_key: str, sources: List[str]) -> List[Article]:
     """
     Searches for recent news about the Mexican automotive market using Perplexity's search API.
     Filters out blacklisted URLs and deduplicates results.
-    Returns a list of article objects (as returned by Perplexity).
+    Returns a list of Article objects.
     """
     client = Perplexity(api_key=api_key)
     queries = [
@@ -45,12 +97,13 @@ def news_research_agent(api_key: str, sources: List[str]) -> List[Any]:
             max_results=7,
         )
         for result in search.results:
-            if result.url not in seen_urls and not is_blacklisted(result.url):
-                all_results.append(result)
-                seen_urls.add(result.url)
+            article = _to_article(result)
+            if article.url and article.url not in seen_urls and not is_blacklisted(article.url):
+                all_results.append(article)
+                seen_urls.add(article.url)
     return all_results
 
-def impact_analysis_agent(api_key: str, articles: List[Any]) -> Optional[Any]:
+def impact_analysis_agent(api_key: str, articles: List[Article]) -> Optional[Article]:
     """
     Analyzes the found articles to select the most impactful one using Perplexity's chat API.
     Returns the selected article object or None.
@@ -78,7 +131,7 @@ def impact_analysis_agent(api_key: str, articles: List[Any]) -> Optional[Any]:
         messages=[{"role": "user", "content": prompt}],
         model="sonar",
     )
-    full_response = completion.choices[0].message.content.strip()
+    full_response = _completion_text(completion).strip()
     print("\n--- Analyst Agent's Reasoning ---")
     print(full_response)
     print("---------------------------------\n")
@@ -91,7 +144,7 @@ def impact_analysis_agent(api_key: str, articles: List[Any]) -> Optional[Any]:
         return None
     return None
 
-def twitter_writer_agent(api_key: str, article: Any) -> str:
+def twitter_writer_agent(api_key: str, article: Article) -> str:
     """
     Generates a Twitter post from the selected article using Perplexity's chat API.
     Returns the generated tweet text.
@@ -120,7 +173,7 @@ def twitter_writer_agent(api_key: str, article: Any) -> str:
                 model="sonar",
 
     )
-    return completion.choices[0].message.content
+    return _completion_text(completion)
 
 def tweet_optimizer_agent(api_key: str, tweet_text: str, max_length: int = 245) -> str:
     """
@@ -148,7 +201,7 @@ def tweet_optimizer_agent(api_key: str, tweet_text: str, max_length: int = 245) 
         model="sonar",
     )
     
-    optimized_tweet = completion.choices[0].message.content.strip()
+    optimized_tweet = _completion_text(completion).strip()
 
 
     # Remove reference citations like [1], [2], etc. from the tweet
