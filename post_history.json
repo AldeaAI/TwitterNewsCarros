@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/08/04/las-10-marcas-de-autos-mas-vendidas-en-julio-2026",
-        "date": "2026-08-08T20:30:05.018913"
-    },
-    {
         "url": "https://www.infobae.com/mexico/2026/08/04/venta-de-autos-en-mexico-repunta-se-vendieron-130-mil-vehiculos-en-julio-de-2026/",
         "date": "2026-08-09T14:34:32.993368"
     },
@@ -54,5 +50,9 @@
     {
         "url": "https://www.elfinanciero.com.mx/autos/2026/08/11/byd-king-dm-i-2027-autonomia-precio-y-prueba/",
         "date": "2026-08-15T14:22:40.348062"
+    },
+    {
+        "url": "https://www.milenio.com/negocios/mexico-domina-el-mercado-de-autopartes-en-eu-con-cifra-historica",
+        "date": "2026-08-16T14:22:34.901703"
     }
 ]
