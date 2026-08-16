@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://www.infobae.com/mexico/2026/08/04/venta-de-autos-en-mexico-repunta-se-vendieron-130-mil-vehiculos-en-julio-de-2026/",
-        "date": "2026-08-09T14:34:32.993368"
-    },
-    {
         "url": "https://noticias.autocosmos.com.mx/2026/08/06/toyota-hilux-2027-precios-y-versiones-en-mexico-de-la-nueva-generacion",
         "date": "2026-08-09T20:32:25.606382"
     },
@@ -54,5 +50,9 @@
     {
         "url": "https://www.milenio.com/negocios/mexico-domina-el-mercado-de-autopartes-en-eu-con-cifra-historica",
         "date": "2026-08-16T14:22:34.901703"
+    },
+    {
+        "url": "https://noticias.autocosmos.com.mx/2026/08/12/volkswagen-taigun-2026-llega-a-mexico-con-nuevas-versiones-y-precios-desde-475990-pesos",
+        "date": "2026-08-16T20:21:50.288856"
     }
 ]
