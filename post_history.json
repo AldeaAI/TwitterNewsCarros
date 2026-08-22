@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://www.elfinanciero.com.mx/autos/2026/08/12/toyota-hilux-2027-precios-y-versiones-en-mexico/",
-        "date": "2026-08-14T20:31:23.266802"
-    },
-    {
         "url": "https://www.elfinanciero.com.mx/autos/2026/08/11/byd-king-dm-i-2027-autonomia-precio-y-prueba/",
         "date": "2026-08-15T14:22:40.348062"
     },
@@ -54,5 +50,9 @@
     {
         "url": "https://noticias.autocosmos.com.mx/2026/08/21/los-10-vehiculos-hechos-en-mexico-mas-exportados-en-julio-2026",
         "date": "2026-08-21T20:25:49.987526"
+    },
+    {
+        "url": "https://noticias.autocosmos.com.mx/2026/08/19/los-10-suvs-mas-vendidos-en-julio-2026",
+        "date": "2026-08-22T14:21:02.332220"
     }
 ]
