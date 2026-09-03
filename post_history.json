@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://www.milenio.com/negocios/nissan-proyecta-a-mexico-como-hub-industrial",
-        "date": "2026-08-26T22:47:48.202878"
-    },
-    {
         "url": "https://www.milenio.com/opinion/larry-rubin/columna-larry-rubin/automotriz-t-mec-hora-definir-futuro-norteamerica",
         "date": "2026-08-27T23:38:44.037309"
     },
@@ -50,5 +46,9 @@
     {
         "url": "https://www.elfinanciero.com.mx/empresas/2026/09/02/ventas-de-autos-nuevos-en-mexico-superan-el-millon-pero-admiten-que-su-rival-son-los-carros-chinos/",
         "date": "2026-09-02T22:24:44.777675"
+    },
+    {
+        "url": "https://www.elfinanciero.com.mx/empresas/2026/09/03/ventas-de-automoviles-superan-el-millon-de-unidades-a-agosto/",
+        "date": "2026-09-03T17:33:55.115517"
     }
 ]
