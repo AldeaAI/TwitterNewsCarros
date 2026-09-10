@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://www.elfinanciero.com.mx/empresas/2026/09/03/ventas-de-automoviles-superan-el-millon-de-unidades-a-agosto/",
-        "date": "2026-09-03T17:33:55.115517"
-    },
-    {
         "url": "https://www.milenio.com/negocios/10-marcas-autos-vendidas-mexico-agosto-2026-inegi",
         "date": "2026-09-03T22:20:59.750445"
     },
@@ -58,5 +54,9 @@
     {
         "url": "https://www.elfinanciero.com.mx/economia/2026/09/10/mexico-confia-que-eu-reduzca-arancel-a-autos-y-aluminio-antes-de-acabar-2026-hay-inversion-en-suspenso/",
         "date": "2026-09-10T17:30:18.129265"
+    },
+    {
+        "url": "https://www.milenio.com/negocios/produccion-autos-mexico-cae-agosto-2026-inegi",
+        "date": "2026-09-10T22:18:02.426768"
     }
 ]
