@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/09/02/las-10-marcas-de-autos-mas-vendidas-en-agosto-2026",
-        "date": "2026-09-05T16:34:23.501731"
-    },
-    {
         "url": "https://noticias.autocosmos.com.mx/2026/08/31/nissan-kait-2027-es-todo-lo-que-esta-bien",
         "date": "2026-09-05T21:56:49.882181"
     },
@@ -54,5 +50,9 @@
     {
         "url": "https://expansion.mx/empresas/2026/09/09/kia-lanza-seltos-hibrida-precio-mexico",
         "date": "2026-09-11T22:17:47.733358"
+    },
+    {
+        "url": "https://noticias.autocosmos.com.mx/2026/09/10/los-10-vehiculos-hechos-en-mexico-mas-exportados-en-agosto-2026",
+        "date": "2026-09-12T16:47:25.779318"
     }
 ]
