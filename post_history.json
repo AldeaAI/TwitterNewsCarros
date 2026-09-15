@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://expansion.mx/empresas/2026/09/08/nissan-march-baja-de-precio",
-        "date": "2026-09-08T22:24:30.060832"
-    },
-    {
         "url": "https://noticias.autocosmos.com.mx/2026/09/07/los-10-autos-mas-vendidos-en-agosto-2026",
         "date": "2026-09-09T17:37:36.269256"
     },
@@ -54,5 +50,9 @@
     {
         "url": "https://www.milenio.com/autos/kia-seltos-2027-en-mexico-precio-versiones-y-nueva-hibrida",
         "date": "2026-09-15T17:57:57.668639"
+    },
+    {
+        "url": "https://expansion.mx/empresas/2026/09/14/kia-seltos-vs-toyota-corolla-cross-precio-rendimiento",
+        "date": "2026-09-15T22:44:10.214386"
     }
 ]
