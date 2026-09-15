@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://www.elfinanciero.com.mx/empresas/2026/09/08/produccion-de-autos-cae-14-por-ciento-en-agosto-y-liga-cuatro-meses-a-la-baja/",
-        "date": "2026-09-08T17:46:52.792998"
-    },
-    {
         "url": "https://expansion.mx/empresas/2026/09/08/nissan-march-baja-de-precio",
         "date": "2026-09-08T22:24:30.060832"
     },
@@ -54,5 +50,9 @@
     {
         "url": "https://noticias.autocosmos.com.mx/2026/09/14/los-10-vehiculos-mas-producidos-en-mexico-durante-agosto-2026",
         "date": "2026-09-14T22:58:39.106232"
+    },
+    {
+        "url": "https://www.milenio.com/autos/kia-seltos-2027-en-mexico-precio-versiones-y-nueva-hibrida",
+        "date": "2026-09-15T17:57:57.668639"
     }
 ]
