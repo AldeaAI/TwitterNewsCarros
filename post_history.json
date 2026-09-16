@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/09/08/los-10-suvs-mas-vendidos-en-agosto-2026",
-        "date": "2026-09-09T22:18:12.656113"
-    },
-    {
         "url": "https://www.elfinanciero.com.mx/economia/2026/09/10/mexico-confia-que-eu-reduzca-arancel-a-autos-y-aluminio-antes-de-acabar-2026-hay-inversion-en-suspenso/",
         "date": "2026-09-10T17:30:18.129265"
     },
@@ -54,5 +50,9 @@
     {
         "url": "https://noticias.autocosmos.com.mx/2026/09/11/mexico-y-eeuu-aceleran-negociacion-comercial-con-la-mira-puesta-en-los-aranceles-automotrices",
         "date": "2026-09-16T17:59:53.969216"
+    },
+    {
+        "url": "https://www.milenio.com/negocios/exportacion-de-vehiculos-pesados-en-mexico-se-dispara-116-en-agosto",
+        "date": "2026-09-16T22:40:35.693336"
     }
 ]
