@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://www.milenio.com/negocios/produccion-autos-mexico-cae-agosto-2026-inegi",
-        "date": "2026-09-10T22:18:02.426768"
-    },
-    {
         "url": "https://www.elfinanciero.com.mx/empresas/2026/09/10/produccion-y-exportacion-de-vehiculos-pesados-se-duplican-en-agosto/",
         "date": "2026-09-11T17:35:02.238776"
     },
@@ -54,5 +50,9 @@
     {
         "url": "https://www.elfinanciero.com.mx/empresas/2026/09/17/el-boom-de-los-autos-electricos-chocara-con-la-dependencia-de-asia/",
         "date": "2026-09-17T17:57:34.257103"
+    },
+    {
+        "url": "https://heraldodemexico.com.mx/edicion-impresa/2026/9/14/nissan-celebra-60-anos-en-mexico-18-en-fila-como-lider-en-ventas-887597.html",
+        "date": "2026-09-17T22:42:10.569326"
     }
 ]
