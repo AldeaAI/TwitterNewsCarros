@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/09/10/kia-seltos-2027-llega-a-mexico-una-nueva-generacion-y-version-hibrida",
-        "date": "2026-09-12T21:58:03.385935"
-    },
-    {
         "url": "https://noticias.autocosmos.com.mx/2026/09/09/las-10-pickups-mas-vendidas-en-agosto-2026",
         "date": "2026-09-13T17:18:40.506552"
     },
@@ -54,5 +50,9 @@
     {
         "url": "https://www.elfinanciero.com.mx/empresas/2026/09/18/las-armadoras-buscan-convertir-a-mexico-en-hub-de-vehiculos-pesados-hay-condiciones-para-competir/",
         "date": "2026-09-19T17:01:25.371104"
+    },
+    {
+        "url": "https://expansion.mx/economia/2026/09/15/inversion-extranjera-electronicos-acelera-autos-cae-mexico",
+        "date": "2026-09-19T22:10:26.737514"
     }
 ]
