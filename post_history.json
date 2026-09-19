@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/09/10/los-10-vehiculos-hechos-en-mexico-mas-exportados-en-agosto-2026",
-        "date": "2026-09-12T16:47:25.779318"
-    },
-    {
         "url": "https://noticias.autocosmos.com.mx/2026/09/10/kia-seltos-2027-llega-a-mexico-una-nueva-generacion-y-version-hibrida",
         "date": "2026-09-12T21:58:03.385935"
     },
@@ -54,5 +50,9 @@
     {
         "url": "https://www.milenio.com/negocios/stellantis-fortalece-operaciones-mexico-vehiculos-electricos",
         "date": "2026-09-18T22:21:10.485011"
+    },
+    {
+        "url": "https://www.elfinanciero.com.mx/empresas/2026/09/18/las-armadoras-buscan-convertir-a-mexico-en-hub-de-vehiculos-pesados-hay-condiciones-para-competir/",
+        "date": "2026-09-19T17:01:25.371104"
     }
 ]
