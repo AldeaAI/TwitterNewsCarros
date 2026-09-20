@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/09/09/las-10-pickups-mas-vendidas-en-agosto-2026",
-        "date": "2026-09-13T17:18:40.506552"
-    },
-    {
         "url": "https://www.eluniversal.com.mx/autopistas/kia-seltos-2027-precios-y-versiones/",
         "date": "2026-09-13T22:09:47.572385"
     },
@@ -54,5 +50,9 @@
     {
         "url": "https://expansion.mx/economia/2026/09/15/inversion-extranjera-electronicos-acelera-autos-cae-mexico",
         "date": "2026-09-19T22:10:26.737514"
+    },
+    {
+        "url": "https://noticias.autocosmos.com.mx/2026/09/17/ford-f-150-se-actualiza-para-2027-con-nuevo-motor-y-mas-tecnologia-para-remolque",
+        "date": "2026-09-20T17:19:06.227239"
     }
 ]
