@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/09/21/jeep-grand-cherokee-2026-llega-a-mexico-con-motor-hurricane-4-este-es-el-precio",
-        "date": "2026-09-25T23:07:45.162609"
-    },
-    {
         "url": "https://heraldodemexico.com.mx/economia/2026/9/23/nueva-suv-urbana-de-hyundai-llega-al-mercado-mexicano-893516.html",
         "date": "2026-09-26T17:38:07.823979"
     },
@@ -50,5 +46,9 @@
     {
         "url": "https://expansion.mx/empresas/2026/10/01/aranceles-eu-autos-impacta-logistica-puertos-manzanillo",
         "date": "2026-10-02T19:01:09.407195"
+    },
+    {
+        "url": "https://www.eluniversal.com.mx/cartera/venta-de-autos-nuevos-crece-8-en-septiembre-se-comercializaron-129-mil-288-unidades/",
+        "date": "2026-10-02T23:35:16.170985"
     }
 ]
