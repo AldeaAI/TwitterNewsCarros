@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/09/29/honda-celebra-2-millones-de-autos-producidos-en-celaya",
-        "date": "2026-10-01T23:43:04.916253"
-    },
-    {
         "url": "https://expansion.mx/empresas/2026/10/01/aranceles-eu-autos-impacta-logistica-puertos-manzanillo",
         "date": "2026-10-02T19:01:09.407195"
     },
@@ -50,5 +46,9 @@
     {
         "url": "https://www.elfinanciero.com.mx/empresas/2026/10/08/la-produccion-de-autos-en-mexico-registra-su-peor-caida-desde-noviembre-de-2021/",
         "date": "2026-10-08T19:41:30.426752"
+    },
+    {
+        "url": "https://heraldodemexico.com.mx/edicion-impresa/2026/10/8/la-menor-demanda-del-exterior-frena-la-produccion-de-autos-903893.html",
+        "date": "2026-10-09T00:09:41.857238"
     }
 ]
