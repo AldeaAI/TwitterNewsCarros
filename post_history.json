@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/10/08/mexico-resiente-aranceles-de-eu-con-caida-en-exportaciones-y-produccion-automotriz",
-        "date": "2026-10-10T18:14:13.962159"
-    },
-    {
         "url": "https://noticias.autocosmos.com.mx/2026/10/07/los-10-autos-mas-vendidos-en-septiembre-2026",
         "date": "2026-10-10T23:17:58.432276"
     },
@@ -50,5 +46,9 @@
     {
         "url": "https://www.motorpasion.com.mx/industria/mexico-espera-lanzamiento-olinia-waldo-s-vende-kiwo-auto-electrico-100-000-pesos",
         "date": "2026-10-17T16:52:08.053547"
+    },
+    {
+        "url": "https://noticias.autocosmos.com.mx/2026/10/14/volkswagen-teramont-2027-llega-a-mexico-mas-tecnologico-y-seguro",
+        "date": "2026-10-17T21:59:06.553573"
     }
 ]
