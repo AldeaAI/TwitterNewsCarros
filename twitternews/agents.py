@@ -1,7 +1,7 @@
-from typing import List, Optional, Any
+from typing import List, Optional, Any, Tuple
 from dataclasses import dataclass
 from perplexity import Perplexity
-from .utils import is_blacklisted
+from .utils import is_blacklisted, TWEET_TARGET_CHARS
 import json
 import re
 
@@ -211,3 +211,64 @@ def tweet_optimizer_agent(api_key: str, tweet_text: str, max_length: int = 245) 
     optimized_tweet = re.sub(r'\(\d+\s+caracteres?\)', '', optimized_tweet).strip()
 
     return optimized_tweet
+
+TWEET_SHORT_MAX_CHARS = 90
+
+def _clean_text(text: str) -> str:
+    """Remove citations, '(N caracteres)' leftovers and surrounding quotes from model output."""
+    text = re.sub(r'\[\d+\]', '', text)
+    text = re.sub(r'\(\d+\s+caracteres?\)', '', text)
+    text = re.sub(r'\[\d+\s+caracteres?\]', '', text)
+    text = re.sub(r'\s+([.,;:])', r'\1', text)
+    return text.strip().strip('"').strip()
+
+def post_copy_agent(api_key: str, article: Article) -> Tuple[str, str]:
+    """
+    One LLM call that writes both texts for the daily post:
+      - tweet: short tweet text (max 90 characters)
+      - image: the longer summary printed on the post image (aims for 245 characters)
+    Returns (tweet, image_text). Falls back to the article title and snippet when the answer
+    cannot be parsed.
+    """
+    client = Perplexity(api_key=api_key)
+    system_prompt = (
+        "Eres un analista de mercado experto en la industria automotriz. "
+        "A partir de la noticia del usuario redacta dos textos en español, con tono sobrio, inteligente y conciso. "
+        "No utilices emojis ni signos de exclamación. "
+        f"\"tweet\": un titular corto para el tweet, de máximo {TWEET_SHORT_MAX_CHARS} caracteres, incluyendo espacios. "
+        f"\"imagen\": un resumen del punto clave de la noticia, que irá sobre la imagen, de menos de {TWEET_TARGET_CHARS} caracteres, incluyendo espacios. "
+        "Responde solo con un objeto JSON con las claves \"tweet\" e \"imagen\". "
+        "No incluyas citaciones, números entre corchetes, ni información adicional, ni menciones el número de caracteres."
+    )
+    user_prompt = (
+        "Redacta los textos a partir de la siguiente noticia:\n\n"
+        f"Título: {article.title}\n"
+        f"Contenido: {article.snippet}\n"
+        f"Fuente: {article.url}"
+    )
+    completion = client.chat.completions.create(
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ],
+        model="sonar",
+    )
+    raw = _completion_text(completion)
+    match = re.search(r"\{.*\}", raw, re.DOTALL)
+    try:
+        data = json.loads(match.group(0)) if match else {}
+    except json.JSONDecodeError:
+        data = {}
+
+    tweet = _clean_text(str(data.get("tweet", "") or ""))
+    image_text = _clean_text(str(data.get("imagen", "") or ""))
+
+    if not tweet or len(tweet) > TWEET_SHORT_MAX_CHARS:
+        print(f"[post_copy_agent] tweet unusable ({len(tweet)} chars), using article title")
+        tweet = _clean_text(article.title)
+        if len(tweet) > TWEET_SHORT_MAX_CHARS:
+            tweet = tweet[:TWEET_SHORT_MAX_CHARS].rsplit(" ", 1)[0]
+    if not image_text:
+        print("[post_copy_agent] image text empty, using article snippet")
+        image_text = _clean_text(article.snippet) or _clean_text(article.title)
+    return tweet, image_text

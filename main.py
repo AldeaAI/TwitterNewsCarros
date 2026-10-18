@@ -28,10 +28,13 @@ import sys
 from urllib.parse import urlparse
 from twitternews.config import get_api_key, get_twitter_credentials, load_sources
 from twitternews.history import load_history, save_history
-from twitternews.agents import news_research_agent, impact_analysis_agent, twitter_writer_agent, tweet_optimizer_agent
-from twitternews.twitter_utils import post_tweet
+from twitternews.agents import news_research_agent, impact_analysis_agent, post_copy_agent, tweet_optimizer_agent
+from twitternews.twitter_utils import post_tweet, post_tweet_with_image
+from twitternews.image_post import build_post_image
+from twitternews.utils import TWEET_TARGET_CHARS, TWEET_MAX_CHARS, source_hashtag
 import re
-from InstagramNews.instagram_post import create_and_optionally_post_instagram
+import os
+import tempfile
 
 def main():
     """
@@ -126,183 +129,74 @@ def main():
 
 
     # -------------------------------
-    # --- Agent 3: Twitter Writer Agent ---
+    # --- Agent 3: Post copy (one LLM call) ---
     # -------------------------------
 
-    # Generate a concise Twitter post recommended for X (Twitter)
-    print("\n[Agent 3/3] Generating Twitter post...")
-    tweet = twitter_writer_agent(api_key, most_relevant)
+    # One call returns the short tweet text and the longer text that goes on the image
+    print("\n[Agent 3/3] Generating post copy...")
+    tweet, image_text = post_copy_agent(api_key, most_relevant)
+    print(f"\n--- Tweet Text ({len(tweet)} characters) ---")
+    print(tweet)
+    print(f"\n--- Image Text ({len(image_text)} characters) ---")
+    print(image_text)
     print("-----------------------\n")
 
+    # The image text aims for TWEET_TARGET_CHARS. Longer ones are optimized once,
+    # and the shorter version is kept.
+    if len(image_text) > TWEET_TARGET_CHARS:
+        print(f"Warning: Image text is {len(image_text)} characters, exceeds the {TWEET_TARGET_CHARS} target.")
+        optimized = tweet_optimizer_agent(api_key, image_text, max_length=TWEET_TARGET_CHARS)
+        candidates = [t for t in (image_text, optimized) if t]
+        image_text = min(candidates, key=len)
+        print(f"Image text after optimization: {len(image_text)} characters")
 
-    print("\n--- Generated Tweet Text ---")
-    print(tweet)
-    # print("-----------------------\n")
+    # Add the brand hashtag, then the newspaper name as a hashtag, e.g. #Motorpasion
+    if "#DataAutomotriz" not in tweet:
+        tweet = f"{tweet} #DataAutomotriz"
+    source_tag = source_hashtag(most_relevant.url)
+    if source_tag not in tweet:
+        tweet = f"{tweet} {source_tag}"
 
-    # -------------------------------
-    # --- Verify tweet length ---
-    # -------------------------------
-
-    # Remove reference citations like [1], [2], etc. from the tweet
-    tweet = re.sub(r'\[\d+\]', '', tweet).strip()
-    print("\n--- Tweet Text After Removing Citations ---")
-    print(tweet)
-    print("-----------------------\n")
-
-    # Remove "(number caracteres)" or "[number caracteres]" text if present
-    tweet = re.sub(r'\(\d+\s+caracteres?\)', '', tweet).strip()
-    tweet = re.sub(r'\[\d+\s+caracteres?\]', '', tweet).strip()
-  
-    print("\n--- Tweet Text After Removing Character Count ---")
-    print(tweet)
-    print("-----------------------\n")
-
-    source_url = getattr(most_relevant, "url", "")
-    source_domain = urlparse(source_url).netloc.lower()
-    if source_domain.startswith("www."):
-        source_domain = source_domain[4:]
-
-    # Keep only the core brand token from the domain.
-    source_parts = [p for p in source_domain.split(".") if p and p != "www"]
-    removable_suffixes = {"com", "mx", "org", "net", "co", "info"}
-    while source_parts and source_parts[-1] in removable_suffixes:
-        source_parts.pop()
-
-    source_label = source_parts[-1] if source_parts else ""
-    source_label = re.sub(r"[^a-z0-9-]", "", source_label)
-
-    if source_label:
-        source_label = source_label[0].upper() + source_label[1:]
-
-    source_prefix = f"{source_label}: " if source_label else ""
-    max_tweet_length = 245
-
-    if source_prefix:
-        max_body_length = max_tweet_length - len(source_prefix)
-        print(f"Source prefix selected: {source_prefix.strip()}")
-
-        if len(tweet) > max_body_length:
-            print(f"Warning: Tweet is {len(tweet)} characters, exceeds {max_body_length} chars available before adding source prefix.")
-            print("Attempting to optimize tweet body to fit within limit...")
-
-            for attempt in range(1, 4):
-                tweet = tweet_optimizer_agent(api_key, tweet, max_length=max_body_length)
-
-                # Re-sanitize optimizer output in case it returns citations/count notes.
-                tweet = re.sub(r'\[\d+\]', '', tweet).strip()
-                tweet = re.sub(r'\(\d+\s+caracteres?\)', '', tweet).strip()
-                tweet = re.sub(r'\[\d+\s+caracteres?\]', '', tweet).strip()
-
-                print(f"Optimization attempt {attempt}: {len(tweet)} characters")
-                print("\n--- Optimized Tweet Text ---")
-                print(tweet)
-                print("-----------------------\n")
-
-                if len(tweet) <= max_body_length:
-                    break
-
-            if len(tweet) > max_body_length:
-                # Never truncate: a cut-off tweet must not be published.
-                print(f"Error: Optimized tweet is still {len(tweet)} characters, exceeds the {max_body_length} character limit.")
-                print("Aborting without posting to avoid publishing an incomplete tweet.")
-                return
-
-        tweet = f"{source_prefix}{tweet}".strip()
-        print(f"Source prefix added at start: {source_prefix.strip()}")
-        print(f"Tweet length with source prefix: {len(tweet)} characters")
-    else:
-        # Fallback behavior when source URL does not include a parseable domain.
-        if len(tweet) > max_tweet_length:
-            print(f"Warning: Tweet is {len(tweet)} characters, exceeds {max_tweet_length} character limit.")
-            print("Attempting to optimize tweet to fit within limit...")
-
-            for attempt in range(1, 4):
-                tweet = tweet_optimizer_agent(api_key, tweet, max_length=max_tweet_length)
-
-                # Re-sanitize optimizer output in case it returns citations/count notes.
-                tweet = re.sub(r'\[\d+\]', '', tweet).strip()
-                tweet = re.sub(r'\(\d+\s+caracteres?\)', '', tweet).strip()
-                tweet = re.sub(r'\[\d+\s+caracteres?\]', '', tweet).strip()
-
-                print(f"Optimization attempt {attempt}: {len(tweet)} characters")
-                print("\n--- Optimized Tweet Text ---")
-                print(tweet)
-                print("-----------------------\n")
-
-                if len(tweet) <= max_tweet_length:
-                    break
-
-            if len(tweet) > max_tweet_length:
-                print(f"Error: Optimized tweet is still {len(tweet)} characters, exceeds {max_tweet_length} character limit.")
-                print("Aborting without posting to avoid publishing an incomplete tweet.")
-                return
-        else:
-            print(f"Tweet length: {len(tweet)} characters (within {max_tweet_length} character limit)")
-
-
+    if len(tweet) > TWEET_MAX_CHARS:
+        print(f"Error: Tweet is {len(tweet)} characters, exceeds the {TWEET_MAX_CHARS} character limit.")
+        print("Cannot proceed with posting. Please review the optimization logic.")
+        return
+    print(f"Tweet length: {len(tweet)} characters (limit {TWEET_MAX_CHARS})")
     print("\n--- Generated Full Tweet Text ---")
     print(tweet)
-    # print("-----------------------\n")
-    # # --- Instagram Post Generation and Optional Publishing ---
-    # try:
-    #     instagram_background = "InstagramNews/Backgrounds/InstagramBackground_1.png"
-    #     instagram_output = "InstagramNews/generated_instagram_post.png"
-    #     roboto_font_path = "InstagramNews/Fonts/Roboto-Regular.ttf"
-    #     # Credentials can be set via environment or config if desired
-    #     import os
-    #     import toml
-    #     # Try to load Instagram credentials from environment, then config.toml
-    #     insta_user = os.getenv('INSTAGRAM_USER')
-    #     insta_pass = os.getenv('INSTAGRAM_PASS')
-    #     insta_session = os.getenv('INSTAGRAM_SESSION_FILE', 'InstagramNews/instagram_session.json')
-    #     if not insta_user or not insta_pass:
-    #         try:
-    #             config = toml.load('config.toml')
-    #             insta_user = insta_user or config.get('INSTAGRAM_USER')
-    #             insta_pass = insta_pass or config.get('INSTAGRAM_PASS')
-    #             insta_session = insta_session or config.get('INSTAGRAM_SESSION_FILE', 'InstagramNews/instagram_session.json')
-    #         except Exception:
-    #             pass
-    #     image_path, caption, post_result = create_and_optionally_post_instagram(
-    #         tweet,
-    #         instagram_output,
-    #         font_path=roboto_font_path,
-    #         username=insta_user,
-    #         password=insta_pass,
-    #         article_url=most_relevant.url,
-    #         session_file=insta_session
-    #     )
-    #     print(f"Instagram image generated at: {image_path}")
-    #     print(f"Instagram caption: {caption}")
-    #     if post_result:
-    #         print(f"Instagram post published: {post_result}")
-    #     else:
-    #         print("Instagram post not published (manual upload or credentials missing)")
-    # except Exception as e:
-    #     print(f"Instagram post generation failed: {e}")
 
     # -------------------------------
-    # --- Optional: Posting the tweet ---
+    # --- Posting ---
     # -------------------------------
 
-    # The following code posts the generated tweet to Twitter using credentials from the environment.
-    # It is currently enabled on main when valid TWITTER_* credentials are present. If you prefer to
-    # TEST LOCALLY without posting, comment out the call to post_tweet or remove the TWITTER_* env entries.
-    try:
-        posted_id = post_tweet(tweet)
-        if posted_id:
-            print(f"Posted tweet id: {posted_id}")
-        else:
-            print("Tweet was not posted.")
-    except Exception as e:
-        # Be explicit about failures: often indicates permissions (403) or invalid credentials
-        print(f"Failed to post tweet: {e}")
+    # The post is published as an image. The image is written to a temporary folder, never the repo.
+    # If the image or its upload fails, the plain text tweet is posted instead.
+    posted_id = None
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        image_path = os.path.join(tmp_dir, "post.jpg")
+        try:
+            build_post_image(image_text, image_path)
+            posted_id = post_tweet_with_image(tweet, image_path)
+        except Exception as e:
+            print(f"Image post failed, falling back to text-only tweet: {e}")
 
+        try:
+            if not posted_id:
+                posted_id = post_tweet(tweet)
+        except Exception as e:
+            # Be explicit about failures: often indicates permissions (403) or invalid credentials
+            print(f"Failed to post tweet: {e}")
+
+    # Only a successful post marks the article as used. A failed post leaves the history file
+    # unchanged, so the next run can pick the article up again, and the run fails.
+    if not posted_id:
+        print("Tweet was not posted. Article NOT saved to history.")
+        sys.exit(1)
+
+    print(f"Posted tweet id: {posted_id}")
     # --- History: Persist the posted URL ---
-    # Save the article to the history so it is not posted again in the short term
     save_history(most_relevant.url, history)
     print(f"\nArticle '{most_relevant.title}' saved to history.")
-
 
 if __name__ == "__main__":
     main()

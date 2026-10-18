@@ -110,3 +110,41 @@ def is_blacklisted(url: str) -> bool:
         return False
     except Exception:
         return False
+
+
+# Tweet length: the writer aims for TWEET_TARGET_CHARS, but a tweet up to TWEET_MAX_CHARS is still
+# accepted, since X's standard limit is 280.
+TWEET_TARGET_CHARS = 245
+TWEET_MAX_CHARS = 280
+
+# Display names for the source hashtag, keyed by the domain's main label (no www, no TLD)
+SOURCE_NAMES = {
+    "motorpasion": "Motorpasion",
+    "autocosmos": "Autocosmos",
+    "autosactual": "AutosActual",
+    "expansion": "Expansion",
+    "elfinanciero": "ElFinanciero",
+    "eluniversal": "ElUniversal",
+    "milenio": "Milenio",
+    "reforma": "Reforma",
+    "heraldodemexico": "HeraldoDeMexico",
+    "infobae": "Infobae",
+}
+
+
+def source_hashtag(url: str) -> str:
+    """
+    Hashtag with the outlet name for an article URL, e.g. '#Motorpasion'.
+    Hashtags can't contain spaces, so names are written in CamelCase.
+    Unknown sites fall back to their domain's main label, capitalized.
+    """
+    host = urlparse(url).netloc.lower().split(":")[0]
+    labels = [part for part in host.split(".") if part != "www"]
+    # Names like 'example.com.mx' keep the name before the second-level suffix
+    if len(labels) >= 3 and labels[-2] in ("com", "co", "org", "net", "gob"):
+        main = labels[-3]
+    elif len(labels) >= 2:
+        main = labels[-2]
+    else:
+        main = host
+    return f"#{SOURCE_NAMES.get(main, main.capitalize())}"
