@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/10/07/los-10-autos-mas-vendidos-en-septiembre-2026",
-        "date": "2026-10-10T23:17:58.432276"
-    },
-    {
         "url": "https://heraldodemexico.com.mx/economia/2026/10/7/buscan-mas-contenido-nacional-de-autopartes-903114.html",
         "date": "2026-10-11T18:38:42.826834"
     },
@@ -50,5 +46,9 @@
     {
         "url": "https://noticias.autocosmos.com.mx/2026/10/14/volkswagen-teramont-2027-llega-a-mexico-mas-tecnologico-y-seguro",
         "date": "2026-10-17T21:59:06.553573"
+    },
+    {
+        "url": "https://noticias.autocosmos.com.mx/2026/10/15/geely-monjaro-em-i-2027-llega-a-mexico-la-suv-mediana-se-vuelve-hibrida-enchufable",
+        "date": "2026-10-18T17:05:43.223338"
     }
 ]
