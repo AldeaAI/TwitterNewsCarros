@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/11/17/los-10-suvs-mas-vendidos-en-octubre-2026",
-        "date": "2026-11-18T21:43:23.915868"
-    },
-    {
         "url": "https://noticias.autocosmos.com.mx/2026/11/19/los-10-vehiculos-hechos-en-mexico-mas-exportados-en-octubre-2026",
         "date": "2026-11-19T21:59:04.594928"
     },
@@ -26,5 +22,9 @@
     {
         "url": "https://heraldodemexico.com.mx/economia/2026/11/18/seis-de-cada-10-autos-nuevos-fueron-a-credito-en-mexico-durante-2026-2920692.html",
         "date": "2026-11-24T23:23:42.890341"
+    },
+    {
+        "url": "https://expansion.mx/empresas/2026/11/24/autos-nuevos-accebles-que-nissan-versa-mexico-2026",
+        "date": "2026-11-25T22:57:52.477410"
     }
 ]
