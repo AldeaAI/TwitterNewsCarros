@@ -1,9 +1,5 @@
 [
     {
-        "url": "https://noticias.autocosmos.com.mx/2026/11/19/los-10-vehiculos-hechos-en-mexico-mas-exportados-en-octubre-2026",
-        "date": "2026-11-19T21:59:04.594928"
-    },
-    {
         "url": "https://expansion.mx/empresas/2026/11/17/robots-ia-automotriz-riesgo-mitad-empleos-mexico-2035",
         "date": "2026-11-20T21:41:22.449362"
     },
@@ -26,5 +22,9 @@
     {
         "url": "https://expansion.mx/empresas/2026/11/24/autos-nuevos-accebles-que-nissan-versa-mexico-2026",
         "date": "2026-11-25T22:57:52.477410"
+    },
+    {
+        "url": "https://noticias.autocosmos.com.mx/2026/11/26/jeep-recon-llega-a-mexico-precio-y-caracteristicas-del-nuevo-4x4-electrico",
+        "date": "2026-11-26T22:50:14.505188"
     }
 ]
